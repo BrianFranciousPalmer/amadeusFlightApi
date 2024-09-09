@@ -3,6 +3,7 @@ package org.example.amadeusflightapi;
 
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Location;
+import org.example.amadeusflightapi.AmadeusConnect;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +17,15 @@ public class ApiController {
         return "Hello World Travel!";
     }
 
+    @GetMapping("/flightSearch")
+        public String flightSearch () {
+        return  "flightSearch.html";
+    }
+
     @GetMapping("/locations")
     public Location[] locations(@RequestParam(required=true) String keyword) throws ResponseException {
         return AmadeusConnect.INSTANCE.location(keyword);
     }
+
+
 }

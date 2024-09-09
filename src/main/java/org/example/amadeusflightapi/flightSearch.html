@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Flight Search Results</title>
+</head>
+<body>
+<h1>Flight Search Results</h1>
+<div th:if="${error}">
+  <p th:text="${error}"></p>
+</div>
+<div th:if="${flightOffers}">
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Airline</th>
+      <th>Price</th>
+      <th>Departure Time</th>
+      <th>Arrival Time</th>
+      <th>Duration</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="flight : ${flightOffers}">
+      <td th:text="${flight.itineraries[0].segments[0].carrierCode}"></td>
+      <td th:text="${flight.price.total}"></td>
+      <td th:text="${flight.itineraries[0].segments[0].departure.at}"></td>
+      <td th:text="${flight.itineraries[0].segments[0].arrival.at}"></td>
+      <td th:text="${flight.itineraries[0].duration}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

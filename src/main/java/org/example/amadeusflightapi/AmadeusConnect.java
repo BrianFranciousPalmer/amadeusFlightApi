@@ -19,5 +19,4 @@ enum AmadeusConnect {
         return amadeus.referenceData.locations.get(Params
                 .with("keyword", keyword)
                 .and("subType", Locations.AIRPORT));
-    }
-}
+ 
