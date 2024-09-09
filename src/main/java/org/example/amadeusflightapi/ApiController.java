@@ -1,9 +1,9 @@
 package org.example.amadeusflightapi;
 
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.FlightOfferSearch;
-import com.amadeus.resources.FlightPrice;
-import com.amadeus.resources.Location;
+//import com.amadeus.resources.*;
+import com.amadeus.resources.*;
+import com.google.gson.JsonObject;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +20,7 @@ public class ApiController {
         return AmadeusConnect.INSTANCE.location(keyword);
     }
 
+    // step 5
     @GetMapping("/flights")
     public FlightOfferSearch[] flights(@RequestParam(required=true) String origin,
                                        @RequestParam(required=true) String destination,
@@ -30,8 +31,16 @@ public class ApiController {
         return AmadeusConnect.INSTANCE.flights(origin, destination, departDate, adults, returnDate);
     }
 
+    // step 6
     @PostMapping("/confirm")
     public FlightPrice confirm(@RequestBody(required=true) FlightOfferSearch search) throws ResponseException {
         return AmadeusConnect.INSTANCE.confirm(search);
     }
+
+    // step 7
+    @PostMapping("/traveler")
+    public Traveler traveler(@RequestBody(required=true) JsonObject travelerInfo) {
+        return DatabaseConnect.traveler(travelerInfo.get("data").getAsJsonObject());
+    }
+
 }
