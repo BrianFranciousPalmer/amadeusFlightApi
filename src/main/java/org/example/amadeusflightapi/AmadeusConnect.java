@@ -8,7 +8,7 @@ import com.amadeus.resources.Location;
 import com.amadeus.exceptions.ResponseException;
 enum AmadeusConnect {
     INSTANCE;
-    private Amadeus amadeus;
+    private final Amadeus amadeus;
     private AmadeusConnect() {
         this.amadeus = Amadeus
 
