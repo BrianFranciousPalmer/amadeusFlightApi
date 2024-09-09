@@ -1,13 +1,11 @@
 package org.example.amadeusflightapi;
 
-
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.FlightPrice;
 import com.amadeus.resources.Location;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping(value="/api")
 public class ApiController {
@@ -30,5 +28,10 @@ public class ApiController {
                                        @RequestParam(required = false) String returnDate)
             throws ResponseException {
         return AmadeusConnect.INSTANCE.flights(origin, destination, departDate, adults, returnDate);
+    }
+
+    @PostMapping("/confirm")
+    public FlightPrice confirm(@RequestBody(required=true) FlightOfferSearch search) throws ResponseException {
+        return AmadeusConnect.INSTANCE.confirm(search);
     }
 }
