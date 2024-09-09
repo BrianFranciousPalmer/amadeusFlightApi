@@ -43,4 +43,9 @@ public class ApiController {
         return DatabaseConnect.traveler(travelerInfo.get("data").getAsJsonObject());
     }
 
+    @PostMapping("/order")
+    public FlightOrder order(@RequestBody(required=true) JsonObject order) throws ResponseException{
+        return AmadeusConnect.INSTANCE.order(order);
+    }
+
 }

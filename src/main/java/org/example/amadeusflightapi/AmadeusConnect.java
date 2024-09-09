@@ -4,9 +4,11 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.FlightOrder;
 import com.amadeus.resources.FlightPrice;
 import com.amadeus.resources.Location;
 import com.amadeus.exceptions.ResponseException;
+import com.google.gson.JsonObject;
 
 enum AmadeusConnect {
     INSTANCE;
@@ -33,5 +35,8 @@ enum AmadeusConnect {
     }
     public FlightPrice confirm(FlightOfferSearch offer) throws ResponseException {
         return amadeus.shopping.flightOffersSearch.pricing.post(offer);
+    }
+    public FlightOrder order(JsonObject order) throws ResponseException {
+        return amadeus.booking.flightOrders.post(order);
     }
 }
