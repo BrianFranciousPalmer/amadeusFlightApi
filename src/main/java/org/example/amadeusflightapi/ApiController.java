@@ -19,7 +19,7 @@ public class ApiController {
 
     @GetMapping("/flightSearch")
         public String flightSearch () {
-        return  "flightSearch.html";
+        return  "flightSearch";
     }
 
     @GetMapping("/locations")

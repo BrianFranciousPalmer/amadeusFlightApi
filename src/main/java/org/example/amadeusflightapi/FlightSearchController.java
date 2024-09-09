@@ -19,6 +19,8 @@ public class FlightSearchController {
     public String searchFlights(@RequestParam String origin,
                                 @RequestParam String destination,
                                 @RequestParam String departureDate,
+                                //@RequestParam String arrivalDate,
+                                @RequestParam String duration,
                                 Model model) {
         try {
             FlightOfferSearch[] flightOffers = amadeusFlightService.searchFlights(origin, destination, departureDate);
